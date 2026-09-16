@@ -1,4 +1,4 @@
-# QA Report — v6
+# QA Report — v6.2
 
 ## Static validation
 - JavaScript parsed successfully with `node --check`.
@@ -36,3 +36,13 @@ Validated:
 
 ## Save migration
 Boot-tested with representative v1, v2 and v5 save-state shapes. All migrated to v6 without runtime exceptions.
+
+
+## v6.2 iPhone / usability validation
+- 390 × 844 mobile viewport: all 9 main views remain within viewport width.
+- Beginner / Standard / Pro display modes boot without JavaScript exceptions.
+- Beginner mode shows contextual decision guidance through the LBO workflow.
+- Pro mode preserves English deal-process labels and hides guidance.
+- Save → new browser context → load preserves deterministic state fields (turn, RNG state, GP cash, LP trust, reputation, fund cash/calls).
+- Full LBO acquisition → value creation → Trade Sale → Fund II fundraising through Final Close validated.
+- Fund II active-fund count confirmed at 2 / 3 after Final Close.
