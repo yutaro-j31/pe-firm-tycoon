@@ -1,6 +1,14 @@
-# PE Firm Tycoon — Private Capital Industry Simulator v6
+# PE Firm Tycoon — Private Capital Industry Simulator v6.2
 
 スマートフォン優先の1ファイル・ブラウザゲーム。PEファームのGP会社、ファンド、案件、LP、Portfolio、競合市場を同時に経営するシミュレーターです。
+
+## Display modes
+
+- **初心者** — やさしい日本語＋「この選択で何が起きるか」の判断ガイドを表示。
+- **標準** — 日本語とPE実務用語を併記。
+- **プロ** — 英語・略語中心の実務表記。判断ガイドは非表示。
+
+表示モードはゲームのセーブとは独立して保存され、投資ロジックや決定論には影響しません。
 
 ## Core loop
 

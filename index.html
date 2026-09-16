@@ -20,7 +20,8 @@
   </div>
   <div id="runtimeStatus" class="runtime bad">ゲームエンジン起動確認中… この表示が残る場合、このプレビューではJavaScriptが実行されていません。</div>
   <div class="stats" id="topStats"></div>
-  <div class="assistbar"><div><b>日本語アシスト</b><span>PE用語は残しつつ、意味を日本語で表示します。</span></div><button id="glossaryBtn" type="button">？ 用語集</button></div>
+  <div class="assistbar"><div class="assist-copy"><b id="assistTitle">初心者モード</b><span id="assistDesc">やさしい日本語で、選択すると何が起きるかも表示します。</span></div><div class="assist-actions"><select id="displayMode" aria-label="表示モード"><option value="beginner">初心者</option><option value="standard">標準</option><option value="pro">プロ</option></select><button id="glossaryBtn" type="button">？ 用語集</button></div></div>
+  <div id="contextGuide" class="context-guide" hidden></div>
   <section id="dashboard" class="view active"></section>
   <section id="deals" class="view"></section>
   <section id="ic" class="view"></section>
@@ -31,15 +32,15 @@
   <section id="strategy" class="view"></section>
   <section id="records" class="view"></section>
   <div class="nav" id="nav">
-    <button data-view="dashboard" class="active">ホーム</button>
-    <button data-view="deals">案件</button>
-    <button data-view="ic">投資委員会</button>
-    <button data-view="funds">ファンド</button>
-    <button data-view="portfolio">投資先</button>
-    <button data-view="ecosystem">市場</button>
-    <button data-view="org">組織</button>
-    <button data-view="strategy">戦略</button>
-    <button data-view="records">実績</button>
+    <button data-view="dashboard" class="active">Dashboard</button>
+    <button data-view="deals">Deal Room</button>
+    <button data-view="ic">IC</button>
+    <button data-view="funds">Funds</button>
+    <button data-view="portfolio">Portfolio</button>
+    <button data-view="ecosystem">Ecosystem</button>
+    <button data-view="org">Org</button>
+    <button data-view="strategy">Strategy</button>
+    <button data-view="records">Records</button>
   </div>
 </div>
 <div class="footerbar"><button class="btn primary" id="advanceBtn">▶ 次の四半期へ</button><button class="btn" id="saveBtn">▣ 保存</button><button class="btn danger" id="resetBtn">↻ リセット</button></div>
@@ -68,8 +69,9 @@
 <div class="gloss-item"><b>NAV Financing</b><strong>ファンド資産担保借入</strong><p>保有する投資先の価値をもとにファンドレベルで借入する方法。</p></div>
 <div class="gloss-item"><b>Secondary</b><strong>二次売買</strong><p>既存のファンド持分や投資先を別の投資家へ売買する取引。</p></div>
 </div></div></div></div>
-<div class="modal" id="memoModal"><div class="modal-card"><div class="modal-head"><h3>投資メモ <small class="term-en">Investment Memo</small></h3><button class="modal-close" id="modalClose" aria-label="close">×</button></div><div class="modal-body" id="memoContent"></div></div></div>
+<div class="modal" id="memoModal"><div class="modal-card"><div class="modal-head"><h3>Investment Memo</h3><button class="modal-close" id="modalClose" aria-label="close">×</button></div><div class="modal-body" id="memoContent"></div></div></div>
+<script>try{window.__PE_DISPLAY_MODE=localStorage.getItem('pe_firm_display_mode_v1')||'beginner'}catch(e){window.__PE_DISPLAY_MODE='beginner'}</script>
 <script src="bootstrap.js"></script>
-<script src="assist.js"></script>
+<script src="assist-v62.js"></script>
 </body>
 </html>
