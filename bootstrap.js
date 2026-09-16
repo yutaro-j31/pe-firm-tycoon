@@ -8,7 +8,9 @@ try{
   const b64=parts.join('').replace(/\s/g,'');
   const bin=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
   const stream=new Blob([bin]).stream().pipeThrough(new DecompressionStream('gzip'));
-  const js=await new Response(stream).text();
+  let js=await new Response(stream).text();
+  if(typeof window.__patchPEEngineV63!=='function')throw new Error('v6.3 engine patch loader is missing');
+  js=window.__patchPEEngineV63(js);
   (0,eval)(js);
 }catch(e){console.error(e);if(status){status.textContent='起動エラー: '+(e&&e.message?e.message:String(e));status.className='runtime bad'}}
 })();
