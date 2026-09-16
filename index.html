@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="style-03.css" />
 <link rel="stylesheet" href="style-04.css" />
 <link rel="stylesheet" href="style-05.css" />
+<link rel="stylesheet" href="style-06.css" />
 </head>
 <body>
 <div class="app">
@@ -19,6 +20,7 @@
   </div>
   <div id="runtimeStatus" class="runtime bad">ゲームエンジン起動確認中… この表示が残る場合、このプレビューではJavaScriptが実行されていません。</div>
   <div class="stats" id="topStats"></div>
+  <div class="assistbar"><div><b>日本語アシスト</b><span>PE用語は残しつつ、意味を日本語で表示します。</span></div><button id="glossaryBtn" type="button">？ 用語集</button></div>
   <section id="dashboard" class="view active"></section>
   <section id="deals" class="view"></section>
   <section id="ic" class="view"></section>
@@ -29,20 +31,45 @@
   <section id="strategy" class="view"></section>
   <section id="records" class="view"></section>
   <div class="nav" id="nav">
-    <button data-view="dashboard" class="active">Dashboard</button>
-    <button data-view="deals">Deal Room</button>
-    <button data-view="ic">IC</button>
-    <button data-view="funds">Funds</button>
-    <button data-view="portfolio">Portfolio</button>
-    <button data-view="ecosystem">Ecosystem</button>
-    <button data-view="org">Org</button>
-    <button data-view="strategy">Strategy</button>
+    <button data-view="dashboard" class="active">ホーム</button>
+    <button data-view="deals">案件</button>
+    <button data-view="ic">投資委員会</button>
+    <button data-view="funds">ファンド</button>
+    <button data-view="portfolio">投資先</button>
+    <button data-view="ecosystem">市場</button>
+    <button data-view="org">組織</button>
+    <button data-view="strategy">戦略</button>
     <button data-view="records">実績</button>
   </div>
 </div>
 <div class="footerbar"><button class="btn primary" id="advanceBtn">▶ 次の四半期へ</button><button class="btn" id="saveBtn">▣ 保存</button><button class="btn danger" id="resetBtn">↻ リセット</button></div>
 <div class="toast" id="toast"></div>
-<div class="modal" id="memoModal"><div class="modal-card"><div class="modal-head"><h3>Investment Memo</h3><button class="modal-close" id="modalClose" aria-label="close">×</button></div><div class="modal-body" id="memoContent"></div></div></div>
+<div class="modal" id="glossaryModal"><div class="modal-card glossary-card"><div class="modal-head"><h3>PE用語集 <small class="term-en">Quick Glossary</small></h3><button class="modal-close" id="glossaryClose" aria-label="close">×</button></div><div class="modal-body"><div class="glossary-grid">
+<div class="gloss-item"><b>AUM</b><strong>運用総額</strong><p>ファームが運用しているファンド資金の総額。</p></div>
+<div class="gloss-item"><b>NAV</b><strong>未売却資産価値</strong><p>まだ売却していない投資先の現在価値。</p></div>
+<div class="gloss-item"><b>IRR</b><strong>年率リターン</strong><p>投資期間を考慮した年率の収益率。高いほど効率よく増えたことを示します。</p></div>
+<div class="gloss-item"><b>MOIC</b><strong>投資倍率</strong><p>投資したお金が最終的に何倍になったか。2.0xなら2倍。</p></div>
+<div class="gloss-item"><b>DPI</b><strong>回収済み倍率</strong><p>LPが実際に受け取った現金 ÷ 払込済み資金。</p></div>
+<div class="gloss-item"><b>TVPI</b><strong>総合投資倍率</strong><p>回収済み現金と未売却価値を合わせたファンド全体の倍率。</p></div>
+<div class="gloss-item"><b>GP</b><strong>運用会社</strong><p>ファンドを組成・運用するPEファーム側。</p></div>
+<div class="gloss-item"><b>LP</b><strong>ファンドの投資家</strong><p>年金・保険・大学基金など、PEファンドへ資金を出す投資家。</p></div>
+<div class="gloss-item"><b>Dry Powder</b><strong>未投資資金</strong><p>コミット済みだが、まだ案件へ投資していない資金。</p></div>
+<div class="gloss-item"><b>Capital Call</b><strong>出資請求</strong><p>案件投資などに必要な資金をLPへ払い込んでもらうこと。</p></div>
+<div class="gloss-item"><b>Carry</b><strong>成功報酬</strong><p>一定以上の利益を出したときにGPが受け取る成果報酬。</p></div>
+<div class="gloss-item"><b>Hurdle</b><strong>優先利回り</strong><p>Carryを受け取る前にLPへ優先的に確保する最低収益率。</p></div>
+<div class="gloss-item"><b>DD</b><strong>買収前調査</strong><p>会社の売上・利益・顧客・法務・税務・業務リスクを詳しく調べます。</p></div>
+<div class="gloss-item"><b>QoE</b><strong>利益の質</strong><p>報告されているEBITDAが本当に継続可能な利益かを検証します。</p></div>
+<div class="gloss-item"><b>IC</b><strong>投資委員会</strong><p>案件を本当に買うか、いくらまで払えるかを決める会議。</p></div>
+<div class="gloss-item"><b>Leverage</b><strong>借入倍率</strong><p>EBITDAに対して何倍の借入を使うか。高いほど自己資金は減るがリスクは増えます。</p></div>
+<div class="gloss-item"><b>SPA</b><strong>株式売買契約</strong><p>買収価格や補償などを定める最終契約。</p></div>
+<div class="gloss-item"><b>Co-invest</b><strong>共同投資</strong><p>LPがファンドとは別枠で案件へ直接追加投資する仕組み。</p></div>
+<div class="gloss-item"><b>Continuation Fund</b><strong>継続保有ファンド</strong><p>売却せず、優良投資先を別ファンドへ移して長く保有する方法。</p></div>
+<div class="gloss-item"><b>LPAC</b><strong>LP諮問委員会</strong><p>利益相反など重要事項をLP代表が審査する委員会。</p></div>
+<div class="gloss-item"><b>NAV Financing</b><strong>ファンド資産担保借入</strong><p>保有する投資先の価値をもとにファンドレベルで借入する方法。</p></div>
+<div class="gloss-item"><b>Secondary</b><strong>二次売買</strong><p>既存のファンド持分や投資先を別の投資家へ売買する取引。</p></div>
+</div></div></div></div>
+<div class="modal" id="memoModal"><div class="modal-card"><div class="modal-head"><h3>投資メモ <small class="term-en">Investment Memo</small></h3><button class="modal-close" id="modalClose" aria-label="close">×</button></div><div class="modal-body" id="memoContent"></div></div></div>
 <script src="bootstrap.js"></script>
+<script src="assist.js"></script>
 </body>
 </html>
