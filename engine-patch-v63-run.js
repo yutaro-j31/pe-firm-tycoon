@@ -1,0 +1,1 @@
+(()=>{'use strict';window.__patchPEEngineV63=function(src){let out=src;const ps=window.__PE_V63_PATCHES||[];for(let i=0;i<ps.length;i++){const [from,to]=ps[i],n=out.split(from).length-1;if(n!==1)throw new Error(`v6.3 engine patch mismatch ${i+1}/${ps.length} (matches=${n})`);out=out.replace(from,to)}return out};})();

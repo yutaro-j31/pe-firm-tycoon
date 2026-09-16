@@ -1,6 +1,6 @@
-# PE Firm Tycoon — Private Capital Industry Simulator v6.2
+# PE Firm Tycoon — Private Capital Industry Simulator v6.3
 
-スマートフォン優先の1ファイル・ブラウザゲーム。PEファームのGP会社、ファンド、案件、LP、Portfolio、競合市場を同時に経営するシミュレーターです。
+スマートフォン優先のブラウザゲーム。PEファームのGP会社、ファンド、案件、LP、Portfolio、競合市場を同時に経営するシミュレーターです。
 
 ## Display modes
 
@@ -21,6 +21,14 @@
 7. Pre-Marketing → DDQ → Anchor LP → First Close → Final Closeで次号Fundをraise
 8. GP会社を採用・Carry配分・Partner retentionで拡大
 9. StrategyをSmall BuyoutからCredit / Secondaries / Real Estateまで拡張
+
+## v6.3 balance changes
+
+- **案件工程に四半期の作業時間を導入** — 1四半期=13週として、DD・Debt・IC・SPA等の工程が同一四半期に無制限に進まないようにしました。通常のLBOは複数四半期にまたがります。
+- **競合PEにDeal Fitを導入** — Large Buyout / Mid-Market / Small Buyout / Buy & Buildの戦略と案件規模の適合度を競争に反映します。
+- **Relationshipの価値を強化** — Banker / Sellerとの関係、Proprietary案件、Execution certaintyが入札結果へより明確に効きます。
+- **Management Feeを現実寄りにstep-down** — Investment Period終了後はコミットメント全額ではなく、保有投資原価を基準に低い料率で計算します。
+- **LP Reputationを運用実績へ接続** — ファンド年齢に応じたTVPI/DPI、満期時の回収状況がLP評価へ反映されます。投資せずFeeだけ受け取る戦略は成立しません。
 
 ## 22 integrated systems
 
@@ -49,10 +57,11 @@
 
 ## Technical notes
 
-- Single-file HTML/CSS/vanilla JavaScript
-- No external libraries
+- HTML/CSS/vanilla JavaScript
+- No external runtime libraries
 - Deterministic seeded RNG; no Math.random / Date.now / crypto.randomUUID
 - localStorage save with in-memory fallback
 - Save migration tested from legacy v1 / v2 / v5 shapes
 - iPhone-first responsive UI
 - Existing save key retained: `pe_firm_tycoon_v1`
+- v6.3 does not change the save schema version; existing v6.2 saves remain compatible
